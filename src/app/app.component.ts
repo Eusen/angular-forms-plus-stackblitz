@@ -53,7 +53,7 @@ export class AppComponent  {
   }
 
   group(type) {
-    return this[`formGroup${type}`];
+    return this[`formGroup${type}`] as FormGroupPlus;
   }
 
   submit(type) {
