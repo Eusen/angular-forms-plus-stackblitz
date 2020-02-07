@@ -1,0 +1,20 @@
+label {
+  display: block;
+}
+
+.field-name {
+  width: 80px;
+  display: inline-block;
+  text-align: right;
+  padding-right: 8px
+}
+
+.error {
+  font-size: 14px;
+  color: red;
+  padding: 0 8px;
+}
+
+.submit-wrapper {
+  padding: 16px 0;
+}

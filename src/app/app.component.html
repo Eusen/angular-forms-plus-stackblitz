@@ -1,0 +1,54 @@
+<h3>1. FormGroup</h3>
+<form [formGroup]="group(1).entry">
+	<label>
+    <span class="field-name">Name:</span>
+    <input type="text" formControlName="name" placeholder="Please input your name">
+    <span class="error" *ngIf="group(1).hasError('name')">Name is required!</span>
+  </label>
+
+  <label>
+    <span class="field-name">Address:</span>
+    <input type="text" formControlName="address" placeholder="Please input your address">
+    <span class="error" *ngIf="group(1).hasError('address')">Address is required!</span>
+  </label>
+
+  <div class="submit-wrapper">
+    <button (click)="submit(1)">Submit 1</button>
+  </div>
+</form>
+
+
+
+<h3>2. FormGroup with an Array</h3>
+<form [formGroup]="group(2).entry">
+	<label>
+    <span>Class Name: </span>
+    <input type="text" formControlName="name" placeholder="Please input your name">
+    <span class="error" *ngIf="group(2).hasError('name')">Name is required!</span>
+  </label>
+  <ng-container formArrayName="students">
+    <ng-container *ngFor="let stu of students; let i = index; let isFirst = first; let isLast = last;">
+      <label class="student" [formGroupName]="i">
+        <span class="field-name">Student {{i + 1}}: </span>
+        <a [class.disabled]="isFirst" alt="move up" (click)="studentMoveUp(i)">👆 </a>
+        <a [class.disabled]="isLast" (click)="studentMoveDown(i)">👇</a>
+        <a [class.disabled]="isLast" (click)="studentRemove(i)">🙅‍♂️</a>
+        <br>
+        
+        <input type="text" formControlName="name" placeholder="Please input student's name">
+        <span class="error" *ngIf="group(2).getControl('students['+i+'].name').hasError()">Name is required!</span>
+        
+        <br>
+        
+        <input type="number" formControlName="age" placeholder="Please input student's age">
+        <span class="error" *ngIf="group(2).getControl('students['+i+'].age').hasError()">Age must >= 10!</span>
+      </label>
+    </ng-container>
+    <br>
+    <button (click)="studentAppend()">➕ Add New Student</button>
+  </ng-container>
+
+  <div class="submit-wrapper">
+    <button (click)="submit(2)">Submit 2</button>
+  </div>
+</form>
