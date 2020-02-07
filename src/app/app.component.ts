@@ -1,10 +1,11 @@
-import {Component} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {FormBuilderPlus, FormGroupPlus} from '../services/form-builder';
 
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
-  styleUrls: [ './app.component.css' ]
+  styleUrls: [ './app.component.css' ],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent  {
   formGroup1: FormGroupPlus;
@@ -14,21 +15,21 @@ export class AppComponent  {
   constructor(private fbp: FormBuilderPlus) {
     // 1. 创建一个普通的 FormGroup
     this.formGroup1 = this.fbp.group(
-    // 第一个参数为结构及默认值
-    {
-      name: 'Default Name', // 可以直接写一个默认值
-      address: null, // 如果没有默认值，可以填 null 或者 ''
-    }, 
-    // 第二个参数定义校验方式
-    {
-      // withoutParams 意为无参数校验，主要是针对 Validators 进行的封装
-      // 因为 Validators 分两种，一种是不用填参数的，一种是需要填参数的
-      withoutParams: [
-        // key 就是 Validators 的 key
-        // fields 是所有必填的字段 
-        {key: 'required', fields: ['name', 'address']}
-      ]
-    });
+        // 第一个参数为结构及默认值
+        {
+          name: 'Default Name', // 可以直接写一个默认值
+          address: null, // 如果没有默认值，可以填 null 或者 ''
+        },
+        // 第二个参数定义校验方式
+        {
+          // withoutParams 意为无参数校验，主要是针对 Validators 进行的封装
+          // 因为 Validators 分两种，一种是不用填参数的，一种是需要填参数的
+          withoutParams: [
+            // key 就是 Validators 的 key
+            // fields 是所有必填的字段
+            {key: 'required', fields: ['name', 'address']}
+          ]
+        });
 
     // 2. 创建一个带 Array 的 FormGroup
     this.formGroup2 = this.fbp.group({

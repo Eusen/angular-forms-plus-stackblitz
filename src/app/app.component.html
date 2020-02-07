@@ -1,6 +1,6 @@
 <h3>1. FormGroup</h3>
 <form [formGroup]="group(1).entry">
-	<label>
+  <label>
     <span class="field-name">Name:</span>
     <input type="text" formControlName="name" placeholder="Please input your name">
     <span class="error" *ngIf="group(1).hasError('name')">Name is required!</span>
@@ -21,7 +21,7 @@
 
 <h3>2. FormGroup with an Array</h3>
 <form [formGroup]="group(2).entry">
-	<label>
+  <label>
     <span>Class Name: </span>
     <input type="text" formControlName="name" placeholder="Please input your name">
     <span class="error" *ngIf="group(2).hasError('name')">Name is required!</span>
@@ -32,14 +32,14 @@
         <span class="field-name">Student {{i + 1}}: </span>
         <a [class.disabled]="isFirst" alt="move up" (click)="studentMoveUp(i)">👆 </a>
         <a [class.disabled]="isLast" (click)="studentMoveDown(i)">👇</a>
-        <a [class.disabled]="isLast" (click)="studentRemove(i)">🙅‍♂️</a>
+        <a [class.disabled]="students.length === 1" (click)="studentRemove(i)">🙅‍♂️</a>
         <br>
-        
+
         <input type="text" formControlName="name" placeholder="Please input student's name">
         <span class="error" *ngIf="group(2).getControl('students['+i+'].name').hasError()">Name is required!</span>
-        
+
         <br>
-        
+
         <input type="number" formControlName="age" placeholder="Please input student's age">
         <span class="error" *ngIf="group(2).getControl('students['+i+'].age').hasError()">Age must >= 10!</span>
       </label>

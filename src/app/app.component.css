@@ -18,3 +18,12 @@ label {
 .submit-wrapper {
   padding: 16px 0;
 }
+
+a {
+  cursor: pointer;
+}
+
+a.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
